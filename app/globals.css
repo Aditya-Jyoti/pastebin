@@ -85,3 +85,87 @@
     color: var(--gruvbox-yellow);
   }
 }
+
+/* Custom scrollbar for editor */
+.live-editor::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+.live-editor::-webkit-scrollbar-track {
+  background: var(--gruvbox-dark);
+}
+
+.live-editor::-webkit-scrollbar-thumb {
+  background: var(--gruvbox-gray);
+  border-radius: 4px;
+}
+
+.live-editor::-webkit-scrollbar-thumb:hover {
+  background: var(--gruvbox-fg);
+}
+
+/* Fix select dropdown text color */
+[data-radix-select-content] {
+  background-color: var(--gruvbox-dark) !important;
+  border-color: var(--gruvbox-gray) !important;
+}
+
+[data-radix-select-item] {
+  color: var(--gruvbox-fg) !important;
+}
+
+[data-radix-select-item]:focus {
+  background-color: var(--gruvbox-gray) !important;
+  color: var(--gruvbox-fg) !important;
+}
+
+/* Switch styling */
+.bg-gruvbox-switch-checked {
+  background-color: var(--gruvbox-green);
+}
+
+.bg-gruvbox-switch-unchecked {
+  background-color: var(--gruvbox-red);
+}
+
+/* Gruvbox syntax highlighting colors */
+.syntax-keyword {
+  color: #b16286; /* purple - keywords like def, function, const */
+}
+
+.syntax-boolean {
+  color: #d65d0e; /* orange - true, false, null */
+}
+
+.syntax-string {
+  color: #98971a; /* green - strings in quotes */
+}
+
+.syntax-comment {
+  color: #928374; /* gray - comments */
+}
+
+.syntax-tag {
+  color: #458588; /* blue - HTML tags */
+}
+
+.syntax-attribute {
+  color: #b16286; /* purple - HTML attributes */
+}
+
+.syntax-property {
+  color: #458588; /* blue - CSS properties */
+}
+
+.syntax-value {
+  color: #d65d0e; /* orange - CSS values like colors */
+}
+
+.syntax-key {
+  color: #458588; /* blue - JSON keys */
+}
+
+.syntax-number {
+  color: #d79921; /* yellow - numbers */
+}
