@@ -1,19 +1,25 @@
-FROM node:18-alpine AS build
+# Simple Next.js Dockerfile for v0 project with pnpm
+FROM node:18-alpine
+
+# Install pnpm
+RUN npm install -g pnpm
+
 WORKDIR /app
 
-COPY package.json package-lock.json ./
-RUN npm install --frozen-lockfile
+# Copy package files
+COPY package.json pnpm-lock.yaml ./
 
-COPY . ./
-RUN npm run build
+# Install dependencies
+RUN pnpm install --frozen-lockfile
 
-FROM node:18-alpine AS development
-WORKDIR /app
+# Copy source code
+COPY . .
 
-COPY package.json package-lock.json ./
-RUN npm install --frozen-lockfile
+# Build the app
+RUN pnpm build
 
-COPY . ./
-
+# Expose port
 EXPOSE 3000
-CMD ["npm", "start"]
+
+# Start the application
+CMD ["pnpm", "start"]

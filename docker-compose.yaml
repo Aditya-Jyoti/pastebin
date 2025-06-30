@@ -1,18 +1,18 @@
 services:
   app:
-    build:
-      context: .
-      dockerfile: Dockerfile
+    image: adityajyoti/pastebin:latest
     container_name: pastebin-app
     environment:
-      - NODE_ENV=production
-      - DATABASE_URL=${DATABASE_URL:?}
+      - DATABASE_URL=postgresql://${DB_USER:?}:${DB_PASSWORD:?}@postgres:5432/pastebin
       - JWT_SECRET=${JWT_SECRET:?}
     ports:
       - ${PORT:?}:3000
     depends_on:
       - postgres
     restart: unless-stopped
+    labels:
+      - traefik.enable=true
+      - traefik.http.routers.pastebin.rule=Host(`${DOMAIN:?}`)
 
   postgres:
     image: postgres:15-alpine
@@ -23,5 +23,5 @@ services:
       POSTGRES_PASSWORD: ${DB_PASSWORD:?}
     volumes:
       - ${DATA_STORAGE:?}:/var/lib/postgresql/data
-      - ./scripts/init.sql:/docker-entrypoint-initdb.d/init.sql
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
     restart: unless-stopped
