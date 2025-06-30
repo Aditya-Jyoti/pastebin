@@ -1,0 +1,87 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url("https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&display=swap");
+
+:root {
+  --gruvbox-bg: #282828;
+  --gruvbox-dark: #1d2021;
+  --gruvbox-darker: #0d1117;
+  --gruvbox-fg: #ebdbb2;
+  --gruvbox-gray: #504945;
+  --gruvbox-red: #cc241d;
+  --gruvbox-green: #98971a;
+  --gruvbox-yellow: #d79921;
+  --gruvbox-blue: #458588;
+  --gruvbox-purple: #b16286;
+  --gruvbox-aqua: #689d6a;
+  --gruvbox-orange: #d65d0e;
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+    font-family: "JetBrains Mono", monospace;
+  }
+}
+
+@layer utilities {
+  .bg-gruvbox-bg {
+    background-color: var(--gruvbox-bg);
+  }
+  .bg-gruvbox-dark {
+    background-color: var(--gruvbox-dark);
+  }
+  .bg-gruvbox-darker {
+    background-color: var(--gruvbox-darker);
+  }
+  .text-gruvbox-fg {
+    color: var(--gruvbox-fg);
+  }
+  .border-gruvbox-gray {
+    border-color: var(--gruvbox-gray);
+  }
+  .text-gruvbox-red {
+    color: var(--gruvbox-red);
+  }
+  .bg-gruvbox-red {
+    background-color: var(--gruvbox-red);
+  }
+  .text-gruvbox-green {
+    color: var(--gruvbox-green);
+  }
+  .bg-gruvbox-green {
+    background-color: var(--gruvbox-green);
+  }
+  .text-gruvbox-yellow {
+    color: var(--gruvbox-yellow);
+  }
+  .bg-gruvbox-yellow {
+    background-color: var(--gruvbox-yellow);
+  }
+  .text-gruvbox-blue {
+    color: var(--gruvbox-blue);
+  }
+  .bg-gruvbox-blue {
+    background-color: var(--gruvbox-blue);
+  }
+  .text-gruvbox-orange {
+    color: var(--gruvbox-orange);
+  }
+  .bg-gruvbox-orange {
+    background-color: var(--gruvbox-orange);
+  }
+  .hover\:bg-gruvbox-gray:hover {
+    background-color: var(--gruvbox-gray);
+  }
+  .hover\:bg-gruvbox-orange:hover {
+    background-color: var(--gruvbox-orange);
+  }
+  .hover\:text-gruvbox-yellow:hover {
+    color: var(--gruvbox-yellow);
+  }
+}

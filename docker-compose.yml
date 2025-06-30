@@ -1,0 +1,42 @@
+version: '3.8'
+
+services:
+  postgres:
+    image: postgres:15-alpine
+    container_name: pastebin-postgres
+    environment:
+      POSTGRES_DB: pastebin
+      POSTGRES_USER: pastebin_user
+      POSTGRES_PASSWORD: pastebin_password
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - ./scripts/init.sql:/docker-entrypoint-initdb.d/init.sql
+    ports:
+      - "5432:5432"
+    networks:
+      - pastebin-network
+    restart: unless-stopped
+
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: pastebin-app
+    environment:
+      - NODE_ENV=production
+      - DATABASE_URL=postgresql://pastebin_user:pastebin_password@postgres:5432/pastebin
+      - JWT_SECRET=your-super-secret-jwt-key-change-this-in-production-make-it-long-and-random
+    ports:
+      - "3000:3000"
+    depends_on:
+      - postgres
+    networks:
+      - pastebin-network
+    restart: unless-stopped
+
+volumes:
+  postgres_data:
+
+networks:
+  pastebin-network:
+    driver: bridge
